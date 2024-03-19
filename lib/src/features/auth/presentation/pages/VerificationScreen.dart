@@ -43,6 +43,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 .then((value) {
               // reload auth to redirect to profile update
               authStateNotifier.markProfileAsAccountVerified();
+              authStateNotifier.markProfileAsUpdated();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(value)),
               );
@@ -118,14 +119,14 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                         value: "email",
                                         child: ListTile(
                                             title: const Text('Email'),
-                                            subtitle: Text(user.email),
+                                            subtitle: Text(user.email??''),
                                             trailing: const Icon(Icons.email)),
                                       ),
                                       FormBuilderFieldOption(
                                         value: "watsapp",
                                         child: ListTile(
                                           title: const Text("WatsApp"),
-                                          subtitle: Text(user.phoneNumber),
+                                          subtitle: Text(user.phoneNumber??''),
                                           trailing:
                                               const Icon(Icons.chat_outlined),
                                         ),
@@ -134,7 +135,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                         value: "sms",
                                         child: ListTile(
                                           title: const Text("SMS"),
-                                          subtitle: Text(user.phoneNumber),
+                                          subtitle: Text(user.phoneNumber??''),
                                           trailing: const Icon(Icons.sms),
                                         ),
                                       ),
@@ -193,7 +194,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                           // _formState = _formState.copyWith(values: {..._formState.values,"otp": "1234"});
                                         });
                                       },
-                                      label: "OTP verification ode",
+                                      label: "OTP verification code",
                                     ),
                                     // readOnly: !(_formKey.currentState!.value["mode"].isNotEmpty == true && _sent),
                                     validator: FormBuilderValidators.compose([

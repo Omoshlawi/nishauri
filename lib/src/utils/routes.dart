@@ -33,6 +33,14 @@ class RouteNames {
   static const FACILITY_VISITS = "facility-visits";
   static const FACILITY_VISIT_DETAIL = "facility-visit-detail";
   static const VERIFY_PROGRAM_OTP = "verify-program-otp";
+
+
+  static const LAB_RESULTS = "lab-results";
+  static const MY_CLINIC_CARD = "clinic-card";
+  static const CHAT_HCW = "chat-bot";
+  static const SETTINGS = "settings";
+
+  static const ART_DIRECTORY= "art-directory";
 }
 
 class MenuItemNames {
@@ -49,15 +57,19 @@ class MenuItemNames {
   static const CANCER_PROGRAM_MENU = "Cancer";
   static const HYPERTENSION_PROGRAM_MENU = "Hypertension";
   static const FACILITY_VISITS = "Visits";
+  static const LAB_RESULTS = "Lab Results";
+  static const MY_CLINIC_CARD = "My Clinic Card";
+  static const CHAT_HCW = "Nishauri Bot";
+  static const ART_DIRECTORY= "Art Directory";
 }
 
-class ProgramCodeNames {
-  static const HIV = "HIV";
-  static const TB = "TB";
-  static const ASTHMA = "ASTHMA";
-  static const DIABETES = "DIABETES";
-  static const CANCER = "CANCER";
-  static const HYPERTENSION = "HBP";
+class ProgramCodeNameIds {
+  static const HIV = "1";
+  static const TB = "2";
+  static const ASTHMA = "3";
+  static const DIABETES = "4";
+  static const CANCER = "5";
+  static const HYPERTENSION = "6";
 
   static const SUPPOTED_PROGRAM_CODES = [
     HIV,

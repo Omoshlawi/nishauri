@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nishauri/src/features/appointments/presentation/pages/Appointments.dart';
+import 'package:nishauri/src/features/art/presentation/art.dart';
 import 'package:nishauri/src/features/auth/data/models/auth_state.dart';
 import 'package:nishauri/src/features/auth/data/providers/auth_provider.dart';
 import 'package:nishauri/src/features/auth/presentation/pages/ChangePassword.dart';
@@ -14,7 +15,10 @@ import 'package:nishauri/src/features/auth/presentation/pages/SplashScreen.dart'
 import 'package:nishauri/src/features/auth/presentation/pages/VerificationScreen.dart';
 import 'package:nishauri/src/features/auth/presentation/pages/WelcomeScreen.dart';
 import 'package:nishauri/src/features/bmi/presentation/pages/BMICalculatorScreen.dart';
+import 'package:nishauri/src/features/chatbot/presentations/ChatScreen.dart';
+import 'package:nishauri/src/features/clinic_card/presentation/pages/ClinicCardScreen.dart';
 import 'package:nishauri/src/features/common/presentation/pages/MainScreen.dart';
+import 'package:nishauri/src/features/common/presentation/pages/SettingsScreen.dart';
 import 'package:nishauri/src/features/dashboard/presentation/pages/Dashboard.dart';
 import 'package:nishauri/src/features/events_calendar/presentation/pages/EventsCalendar.dart';
 import 'package:nishauri/src/features/hiv/data/models/appointment/art_appointment.dart';
@@ -43,6 +47,8 @@ import 'package:nishauri/src/features/user_programs/presentation/pages/ProgramVe
 import 'package:nishauri/src/features/visits/presentations/pages/FacilityVisitDetailScreen.dart';
 import 'package:nishauri/src/features/visits/presentations/pages/FacilityVisitsScreen.dart';
 import 'package:nishauri/src/utils/routes.dart';
+
+import '../../features/lab/presentation/pages/LabResults.dart';
 
 final routesProvider = Provider<GoRouter>((ref) {
   final router = RouterNotifier(ref);
@@ -145,6 +151,13 @@ final List<RouteBase> secureRoutes = [
       return const EventsCalendar();
     },
   ),
+   GoRoute(
+    name: RouteNames.ART_DIRECTORY,
+    path: 'Art-directory',
+    builder: (BuildContext context, GoRouterState state) {
+      return  Art_Directory();
+    },
+  ),
   GoRoute(
     name: RouteNames.UNLOCK_SCREEN,
     path: 'unlock',
@@ -171,6 +184,13 @@ final List<RouteBase> secureRoutes = [
     path: 'privacy-settings',
     builder: (BuildContext context, GoRouterState state) {
       return const PrivacySettingsScreen();
+    },
+  ),
+  GoRoute(
+    name: RouteNames.SETTINGS,
+    path: 'settings',
+    builder: (BuildContext context, GoRouterState state) {
+      return const SettingsScreen();
     },
   ),
   GoRoute(
@@ -218,6 +238,27 @@ final List<RouteBase> secureRoutes = [
     path: 'appointments',
     builder: (BuildContext context, GoRouterState state) {
       return const Appointments();
+    },
+  ),
+  GoRoute(
+    name: RouteNames.LAB_RESULTS,
+    path: 'lab-results',
+    builder: (BuildContext context, GoRouterState state) {
+      return const LabResults();
+    },
+  ),
+  GoRoute(
+    name: RouteNames.MY_CLINIC_CARD,
+    path: 'clinic-card',
+    builder: (BuildContext context, GoRouterState state) {
+      return const ClinicCardScreen();
+    },
+  ),
+  GoRoute(
+    name: RouteNames.CHAT_HCW,
+    path: 'chat-bot',
+    builder: (BuildContext context, GoRouterState state) {
+      return const ChatScreen();
     },
   ),
   GoRoute(

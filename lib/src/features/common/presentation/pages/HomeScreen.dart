@@ -83,7 +83,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   name:
                       (asyncUser.value?.name ?? "")
                           .titleCase,
-                  phoneNumber: asyncUser.value!.phoneNumber,
+                  phoneNumber: asyncUser.value!.phoneNumber??'',
                   image: asyncUser.value!.image,
                 ),
                 onTap: () => context.goNamed(RouteNames.PROFILE_SETTINGS),
@@ -141,6 +141,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     );
                   },
                 );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text("Settings"),
+              onTap: () {
+                context.goNamed(RouteNames.SETTINGS);
+                // Close drawer
+                Navigator.pop(context);
               },
             ),
             // ...drawerItems.map(
