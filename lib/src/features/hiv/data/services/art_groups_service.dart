@@ -24,8 +24,12 @@ class ARTGroupService extends HTTPService {
   Future<StreamedResponse> getUserARTGroups_(dynamic args) async {
     final tokenPair = await getCachedToken();
     var headers = {'x-access-token': tokenPair.accessToken};
-    var request = Request('GET',
-        Uri.parse('${Constants.BASE_URL}/hiv-program/art-community/groups'));
+    var request = Request(
+        'GET',
+        Uri.parse(
+            '${Constants.BASE_URL_LOCAL}/hiv-program/art-community/groups${getQueryParams({
+              "user_id": "Mg=="
+            })}'));
     request.headers.addAll(headers);
     return await request.send();
   }
@@ -40,14 +44,19 @@ class ARTGroupService extends HTTPService {
       'x-access-token': tokenPair.accessToken,
       'Content-Type': 'application/json'
     };
-    var request = Request('POST',
-        Uri.parse('${Constants.BASE_URL}/hiv-program/art-community/groups'));
+    var request = Request(
+        'POST',
+        Uri.parse(
+            '${Constants.BASE_URL_LOCAL}/hiv-program/art-community/groups${getQueryParams({
+              "user_id": "Mg=="
+            })}'));
     request.headers.addAll(headers);
     request.body = json.encode({
       ...group,
       "extraSubscribers":
           (group["extraSubscribers"] as List<ARTGroupExtraSubscriber>)
-              .map((e) => e.toJson()).toList()
+              .map((e) => e.toJson())
+              .toList()
     });
     return await request.send();
   }
@@ -68,7 +77,9 @@ class ARTGroupService extends HTTPService {
     var request = Request(
         'GET',
         Uri.parse(
-            '${Constants.BASE_URL}/hiv-program/art-community/enrollments'));
+            '${Constants.BASE_URL_LOCAL}/hiv-program/art-community/enrollments${getQueryParams({
+              "user_id": "Mg=="
+            })}'));
     request.headers.addAll(headers);
     return await request.send();
   }

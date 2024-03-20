@@ -65,6 +65,11 @@ List<MenuItem> getGenericMenuItems(BuildContext context) {
     //   title: MenuItemNames.DASHBOARD,
     //   onPressed: () => context.goNamed(RouteNames.DASHBOARD),
     // ),
+  MenuItem(
+    icon: Icons.vaccines,
+    title: MenuItemNames.HIV_PROGRAM_MENU,
+    onPressed: () => context.goNamed(RouteNames.HIV_PROGRAM),
+  ),
 
    
     MenuItem(

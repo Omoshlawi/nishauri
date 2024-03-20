@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -105,66 +106,70 @@ class ARTGroupFormScreen extends HookWidget {
                   FormBuilderField<List<ARTGroupExtraSubscriber>>(
                     initialValue: group == null ? [] : group!.extraSubscribers,
                     builder: (state) {
-                      return Container(
-                        padding: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(Constants.ROUNDNESS),
-                          ),
-                          border: Border.all(
-                            width: 1,
-                            color: theme.colorScheme.onSurface.withOpacity(0.5),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: SingleChildScrollView(
-
-                                scrollDirection: Axis.horizontal,
-
-                                child: Row(
-                                  children: state.value
-                                          ?.map(
-                                            (e) => AppCard(
-                                              child: SizedBox(
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      Constants.SPACING),
-                                                  child: Text(e.name),
-                                                ),
-                                              ),
-                                              onTap: () {
-                                                state.didChange(state.value
-                                                    ?.where((element) =>
-                                                        element.cccNumber !=
-                                                        e.cccNumber)
-                                                    .toList());
-                                              },
-                                            ),
-                                          )
-                                          .toList() ??
-                                      [],
+                      return InputDecorator(
+                        decoration: inputDecoration(
+                            prefixIcon: Icons.group_add,
+                            label: "Extra subscribers",
+                            placeholder: "Add extra subscriber",
+                            surfixIcon: Icons.add,
+                            onSurfixIconPressed: () async {
+                              final subscriber =
+                                  await showDialog<ARTGroupExtraSubscriber>(
+                                      context: context,
+                                      builder: (context) =>
+                                          const GroupExtraSubscriberDialog());
+                              if (subscriber != null) {
+                                state.didChange(
+                                    [...state.value ?? [], subscriber]);
+                              }
+                            }).copyWith(prefixIcon: null),
+                        expands: false,
+                        child: state.value?.isNotEmpty == true
+                            ? Row(
+                                children: [
+                                  Expanded(
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Row(
+                                        children: state.value
+                                                ?.map(
+                                                  (e) => AppCard(
+                                                    child: SizedBox(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(Constants
+                                                                    .SPACING),
+                                                        child: Text(e.name),
+                                                      ),
+                                                    ),
+                                                    onTap: () {
+                                                      state.didChange(state
+                                                          .value
+                                                          ?.where((element) =>
+                                                              element
+                                                                  .cccNumber !=
+                                                              e.cccNumber)
+                                                          .toList());
+                                                    },
+                                                  ),
+                                                )
+                                                .toList() ??
+                                            [],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Text(
+                                "Add Extra subscribers",
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurface
+                                      .withOpacity(0.8),
                                 ),
                               ),
-                            ),
-                            IconButton(
-                              onPressed: () async {
-                                final subscriber =
-                                    await showDialog<ARTGroupExtraSubscriber>(
-                                        context: context,
-                                        builder: (context) =>
-                                            const GroupExtraSubscriberDialog());
-                                if (subscriber != null) {
-                                  state.didChange(
-                                      [...state.value ?? [], subscriber]);
-                                }
-                              },
-                              icon: const Icon(Icons.add),
-                            )
-                          ],
-                        ),
                       );
                     },
                     name: "extraSubscribers",
