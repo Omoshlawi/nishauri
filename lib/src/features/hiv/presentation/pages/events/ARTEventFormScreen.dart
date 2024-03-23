@@ -17,6 +17,7 @@ import 'package:nishauri/src/utils/constants.dart';
 import 'package:nishauri/src/utils/helpers.dart';
 
 import '../../../../../shared/display/AppCard.dart';
+import '../../../../../shared/input/DialogListInput.dart';
 
 class ARTEventFormScreen extends HookWidget {
   final ARTEvent? event;
@@ -119,90 +120,6 @@ class ARTEventFormScreen extends HookWidget {
                                 valueTransformer: (date) =>
                                     date?.toIso8601String(),
                               ),
-                              const SizedBox(height: Constants.SPACING * 2),
-                              FormBuilderField<List<String>>(
-                                initialValue: event == null
-                                    ? []
-                                    : event!.reminderNotificationDates,
-                                builder: (state) {
-                                  return Container(
-                                    padding: const EdgeInsets.all(4),
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.rectangle,
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(Constants.ROUNDNESS),
-                                      ),
-                                      border: Border.all(
-                                        width: 1,
-                                        color: theme.colorScheme.onSurface
-                                            .withOpacity(0.5),
-                                      ),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: SingleChildScrollView(
-                                            scrollDirection: Axis.horizontal,
-                                            child: Row(
-                                              children: state.value
-                                                      ?.map(
-                                                        (e) => AppCard(
-                                                          child: SizedBox(
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(
-                                                                      Constants
-                                                                          .SPACING),
-                                                              child: Text(DateFormat(
-                                                                      "ddd MMM yyy HH:mm a")
-                                                                  .format(DateTime
-                                                                      .parse(
-                                                                          e))),
-                                                            ),
-                                                          ),
-                                                          onTap: () {
-                                                            state.didChange(state
-                                                                .value
-                                                                ?.where(
-                                                                    (element) =>
-                                                                        element !=
-                                                                        e)
-                                                                .toList());
-                                                          },
-                                                        ),
-                                                      )
-                                                      .toList() ??
-                                                  [],
-                                            ),
-                                          ),
-                                        ),
-                                        IconButton(
-                                          onPressed: () async {
-                                            final subscriber =
-                                                await showDatePicker(
-                                              context: context,
-                                              initialDate: DateTime.now(),
-                                              firstDate: DateTime.now(),
-                                              lastDate: DateTime.now().add(
-                                                const Duration(hours: 168),
-                                              ),
-                                            );
-                                            if (subscriber != null) {
-                                              state.didChange([
-                                                ...state.value ?? [],
-                                                subscriber.toIso8601String()
-                                              ]);
-                                            }
-                                          },
-                                          icon: const Icon(Icons.add),
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                },
-                                name: "extraSubscribers",
-                              ),
                               const SizedBox(height: Constants.SPACING),
                               FormBuilderDropdown(
                                 name: "groupMembership",
@@ -216,8 +133,8 @@ class ARTEventFormScreen extends HookWidget {
                                 items: groups
                                     .map(
                                       (e) => DropdownMenuItem(
-                                        child: Text(e.group.title),
                                         value: e.group.id,
+                                        child: Text(e.group.title),
                                       ),
                                     )
                                     .toList(),
@@ -246,6 +163,46 @@ class ARTEventFormScreen extends HookWidget {
                                 validator: FormBuilderValidators.compose([
                                   FormBuilderValidators.required(),
                                 ]),
+                              ),
+                              const SizedBox(height: Constants.SPACING ),
+                              FormBuilderField<List<String>>(
+                                name: "reminderNotificationDates",
+                                initialValue: event == null
+                                    ? []
+                                    : event!.reminderNotificationDates,
+                                validator: FormBuilderValidators.compose([
+                                  FormBuilderValidators.required(),
+                                ]),
+                                builder: (state) {
+                                  return DialogListInput<String>(
+                                      items: state.value ?? [],
+                                      onAddTapped: () async {
+                                        final subscriber =
+                                        await showDatePicker(
+                                          context: context,
+                                          initialDate: DateTime.now(),
+                                          firstDate: DateTime.now(),
+                                          lastDate: DateTime.now().add(
+                                            const Duration(hours: 168),
+                                          ),
+                                        );
+                                        if (subscriber != null) {
+                                          state.didChange([
+                                            ...state.value ?? [],
+                                            subscriber.toIso8601String()
+                                          ]);
+                                        }
+                                      },
+                                      onChange: (data) => state.didChange(data),
+                                      decoration: inputDecoration(
+                                        prefixIcon: Icons.schedule,
+                                        label: "Reminder notification dates",
+                                        placeholder: "Add date",
+                                      ),
+                                      labelExtractor: (e) => DateFormat("dd/MM/yyy hh:mm:ss")
+                                          .format(DateTime.parse(e)),
+                                      keyExtractor: (e) => e);
+                                },
                               ),
                               const SizedBox(height: Constants.SPACING * 2),
                               Consumer(

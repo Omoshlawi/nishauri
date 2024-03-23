@@ -28,6 +28,7 @@ import 'package:nishauri/src/features/hiv/presentation/pages/ARTSites.dart';
 import 'package:nishauri/src/features/hiv/presentation/pages/HIVMenu.dart';
 import 'package:nishauri/src/features/hiv/presentation/pages/RegimenHistory.dart';
 import 'package:nishauri/src/features/hiv/presentation/pages/appointments/ARTAppointmentDetail.dart';
+import 'package:nishauri/src/features/hiv/presentation/pages/deliveries/DrugDeliveryWizardForm.dart';
 import 'package:nishauri/src/features/hiv/presentation/pages/events/ARTEventDetail.dart';
 import 'package:nishauri/src/features/hiv/presentation/pages/events/ARTEventFormScreen.dart';
 import 'package:nishauri/src/features/hiv/presentation/pages/events/ARTEvents.dart';
@@ -151,11 +152,11 @@ final List<RouteBase> secureRoutes = [
       return const EventsCalendar();
     },
   ),
-   GoRoute(
+  GoRoute(
     name: RouteNames.ART_DIRECTORY,
     path: 'Art-directory',
     builder: (BuildContext context, GoRouterState state) {
-      return  Art_Directory();
+      return Art_Directory();
     },
   ),
   GoRoute(
@@ -409,6 +410,14 @@ final List<RouteBase> hivProgramRoutes = [
       }
       return DrugOrderWizardFormScreen(type: type);
       return const DrugOrderWizardFormScreen();
+    },
+  ),
+  GoRoute(
+    name: RouteNames.HIV_ART_DELIVERY_INITIATION_FORM,
+    path: "art-drug-initiation-form",
+    builder: (BuildContext context, GoRouterState state) {
+      // final extra = state.extra as Map<String, dynamic>;
+      return const DrugDeliveryWizardForm();
     },
   ),
 ];

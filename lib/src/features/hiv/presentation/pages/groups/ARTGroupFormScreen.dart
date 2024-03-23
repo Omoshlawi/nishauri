@@ -14,6 +14,7 @@ import 'package:nishauri/src/features/hiv/presentation/widgets/groups/GroupExtra
 import 'package:nishauri/src/shared/display/AppCard.dart';
 import 'package:nishauri/src/shared/display/Logo.dart';
 import 'package:nishauri/src/shared/input/Button.dart';
+import 'package:nishauri/src/shared/input/DialogListInput.dart';
 import 'package:nishauri/src/shared/layouts/ResponsiveWidgetFormLayout.dart';
 import 'package:nishauri/src/shared/styles/input_styles.dart';
 import 'package:nishauri/src/utils/constants.dart';
@@ -102,6 +103,34 @@ class ARTGroupFormScreen extends HookWidget {
                     // and this
                     keyboardType: TextInputType.multiline,
                   ),
+                  const SizedBox(height: Constants.SPACING * 2),
+                  /*FormBuilderField<List<ARTGroupExtraSubscriber>>(
+                    initialValue: group == null ? [] : group!.extraSubscribers,
+                    builder: (state) {
+                      return DialogListInput<ARTGroupExtraSubscriber>(
+                          items: state.value ?? [],
+                          onAddTapped: () async {
+                            final subscriber =
+                                await showDialog<ARTGroupExtraSubscriber>(
+                                    context: context,
+                                    builder: (context) =>
+                                        const GroupExtraSubscriberDialog());
+                            if (subscriber != null) {
+                              state.didChange(
+                                  [...state.value ?? [], subscriber]);
+                            }
+                          },
+                          onChange: (data) => state.didChange(data),
+                          decoration: inputDecoration(
+                            prefixIcon: Icons.group_add,
+                            label: "Extra subscribers",
+                            placeholder: "Add extra subscriber",
+                          ),
+                          labelExtractor: (e) => e.name,
+                          keyExtractor: (e) => e.cccNumber);
+                    },
+                    name: "extraSubscribers",
+                  ),*/
                   const SizedBox(height: Constants.SPACING * 2),
                   FormBuilderField<List<ARTGroupExtraSubscriber>>(
                     initialValue: group == null ? [] : group!.extraSubscribers,

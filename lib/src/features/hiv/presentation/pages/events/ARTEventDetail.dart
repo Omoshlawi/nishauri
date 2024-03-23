@@ -75,6 +75,22 @@ class ARTEventDetailScreen extends HookConsumerWidget {
                         },
                       );
                     },
+                  ),FloatingActionButton.extended(
+                    // shape: const CircleBorder(),
+                    heroTag: null,
+                    label: const Text("Initiate delivery"),
+                    icon: const Icon(Icons.delivery_dining),
+                    onPressed: () {
+                      context.goNamed(
+                        RouteNames.HIV_ART_DELIVERY_INITIATION_FORM,
+                        extra: {
+                          "payload": data
+                              .where((element) => element.id == eventId)
+                              .elementAt(0),
+                          "type": "self"
+                        },
+                      );
+                    },
                   ),
                   FloatingActionButton.extended(
                     // shape: const CircleBorder(),
