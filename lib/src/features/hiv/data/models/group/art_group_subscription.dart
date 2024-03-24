@@ -9,11 +9,12 @@ part 'art_group_subscription.g.dart';
 class ARTGroupSubscription with _$ARTGroupSubscription {
   const factory ARTGroupSubscription({
     String? id,
-    required ARTGroup group,
+    ARTGroup? group,
     required ARTGroupMember user,
     String? publicName,
     required String createdAt,
     @Default(false) bool? isCurrent,
+    @Default(false) bool? hasConcented,
     @Default(false) bool? isAdmin,
   }) = _ARTGroupSubscription;
 

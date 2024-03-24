@@ -25,6 +25,8 @@ mixin _$ARTGroup {
   String? get description => throw _privateConstructorUsedError;
   List<ARTGroupExtraSubscriber> get extraSubscribers =>
       throw _privateConstructorUsedError;
+  List<ARTGroupSubscription> get enrollments =>
+      throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
   String get updatedAt => throw _privateConstructorUsedError;
 
@@ -44,6 +46,7 @@ abstract class $ARTGroupCopyWith<$Res> {
       String title,
       String? description,
       List<ARTGroupExtraSubscriber> extraSubscribers,
+      List<ARTGroupSubscription> enrollments,
       String createdAt,
       String updatedAt});
 }
@@ -65,6 +68,7 @@ class _$ARTGroupCopyWithImpl<$Res, $Val extends ARTGroup>
     Object? title = null,
     Object? description = freezed,
     Object? extraSubscribers = null,
+    Object? enrollments = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -85,6 +89,10 @@ class _$ARTGroupCopyWithImpl<$Res, $Val extends ARTGroup>
           ? _value.extraSubscribers
           : extraSubscribers // ignore: cast_nullable_to_non_nullable
               as List<ARTGroupExtraSubscriber>,
+      enrollments: null == enrollments
+          ? _value.enrollments
+          : enrollments // ignore: cast_nullable_to_non_nullable
+              as List<ARTGroupSubscription>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -110,6 +118,7 @@ abstract class _$$ARTGroupImplCopyWith<$Res>
       String title,
       String? description,
       List<ARTGroupExtraSubscriber> extraSubscribers,
+      List<ARTGroupSubscription> enrollments,
       String createdAt,
       String updatedAt});
 }
@@ -129,6 +138,7 @@ class __$$ARTGroupImplCopyWithImpl<$Res>
     Object? title = null,
     Object? description = freezed,
     Object? extraSubscribers = null,
+    Object? enrollments = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -149,6 +159,10 @@ class __$$ARTGroupImplCopyWithImpl<$Res>
           ? _value._extraSubscribers
           : extraSubscribers // ignore: cast_nullable_to_non_nullable
               as List<ARTGroupExtraSubscriber>,
+      enrollments: null == enrollments
+          ? _value._enrollments
+          : enrollments // ignore: cast_nullable_to_non_nullable
+              as List<ARTGroupSubscription>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -169,9 +183,11 @@ class _$ARTGroupImpl with DiagnosticableTreeMixin implements _ARTGroup {
       required this.title,
       this.description,
       final List<ARTGroupExtraSubscriber> extraSubscribers = const [],
+      final List<ARTGroupSubscription> enrollments = const [],
       required this.createdAt,
       required this.updatedAt})
-      : _extraSubscribers = extraSubscribers;
+      : _extraSubscribers = extraSubscribers,
+        _enrollments = enrollments;
 
   factory _$ARTGroupImpl.fromJson(Map<String, dynamic> json) =>
       _$$ARTGroupImplFromJson(json);
@@ -192,6 +208,15 @@ class _$ARTGroupImpl with DiagnosticableTreeMixin implements _ARTGroup {
     return EqualUnmodifiableListView(_extraSubscribers);
   }
 
+  final List<ARTGroupSubscription> _enrollments;
+  @override
+  @JsonKey()
+  List<ARTGroupSubscription> get enrollments {
+    if (_enrollments is EqualUnmodifiableListView) return _enrollments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_enrollments);
+  }
+
   @override
   final String createdAt;
   @override
@@ -199,7 +224,7 @@ class _$ARTGroupImpl with DiagnosticableTreeMixin implements _ARTGroup {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ARTGroup(id: $id, title: $title, description: $description, extraSubscribers: $extraSubscribers, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ARTGroup(id: $id, title: $title, description: $description, extraSubscribers: $extraSubscribers, enrollments: $enrollments, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -211,6 +236,7 @@ class _$ARTGroupImpl with DiagnosticableTreeMixin implements _ARTGroup {
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('description', description))
       ..add(DiagnosticsProperty('extraSubscribers', extraSubscribers))
+      ..add(DiagnosticsProperty('enrollments', enrollments))
       ..add(DiagnosticsProperty('createdAt', createdAt))
       ..add(DiagnosticsProperty('updatedAt', updatedAt));
   }
@@ -226,6 +252,8 @@ class _$ARTGroupImpl with DiagnosticableTreeMixin implements _ARTGroup {
                 other.description == description) &&
             const DeepCollectionEquality()
                 .equals(other._extraSubscribers, _extraSubscribers) &&
+            const DeepCollectionEquality()
+                .equals(other._enrollments, _enrollments) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -240,6 +268,7 @@ class _$ARTGroupImpl with DiagnosticableTreeMixin implements _ARTGroup {
       title,
       description,
       const DeepCollectionEquality().hash(_extraSubscribers),
+      const DeepCollectionEquality().hash(_enrollments),
       createdAt,
       updatedAt);
 
@@ -263,6 +292,7 @@ abstract class _ARTGroup implements ARTGroup {
       required final String title,
       final String? description,
       final List<ARTGroupExtraSubscriber> extraSubscribers,
+      final List<ARTGroupSubscription> enrollments,
       required final String createdAt,
       required final String updatedAt}) = _$ARTGroupImpl;
 
@@ -277,6 +307,8 @@ abstract class _ARTGroup implements ARTGroup {
   String? get description;
   @override
   List<ARTGroupExtraSubscriber> get extraSubscribers;
+  @override
+  List<ARTGroupSubscription> get enrollments;
   @override
   String get createdAt;
   @override

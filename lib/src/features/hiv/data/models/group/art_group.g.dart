@@ -16,6 +16,11 @@ _$ARTGroupImpl _$$ARTGroupImplFromJson(Map<String, dynamic> json) =>
                   ARTGroupExtraSubscriber.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      enrollments: (json['enrollments'] as List<dynamic>?)
+              ?.map((e) =>
+                  ARTGroupSubscription.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       createdAt: json['createdAt'] as String,
       updatedAt: json['updatedAt'] as String,
     );
@@ -26,6 +31,7 @@ Map<String, dynamic> _$$ARTGroupImplToJson(_$ARTGroupImpl instance) =>
       'title': instance.title,
       'description': instance.description,
       'extraSubscribers': instance.extraSubscribers,
+      'enrollments': instance.enrollments,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
     };

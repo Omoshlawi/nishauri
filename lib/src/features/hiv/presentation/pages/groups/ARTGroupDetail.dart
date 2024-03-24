@@ -37,7 +37,7 @@ class ARTGroupDetailScreen extends StatelessWidget {
                 header: Column(
                   children: [
                     Center(
-                      child: Text(artGroup.group.title,
+                      child: Text(artGroup.group!.title,
                           style: theme.textTheme.headlineMedium),
                     ),
                     SingleChildScrollView(
@@ -111,11 +111,11 @@ class ARTGroupDetailScreen extends StatelessWidget {
 
                     title: const Text("Group description"),
                     leading: const CircleAvatar(child: Icon(Icons.info)),
-                    subtitle: Text(artGroup.group.description ?? "", maxLines: 1, overflow: TextOverflow.ellipsis),
+                    subtitle: Text(artGroup.group!.description ?? "", maxLines: 1, overflow: TextOverflow.ellipsis),
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(Constants.SPACING),
-                        child: Text(artGroup.group.description ?? ""),
+                        child: Text(artGroup.group!.description ?? ""),
                       ),
                     ],
                   ),

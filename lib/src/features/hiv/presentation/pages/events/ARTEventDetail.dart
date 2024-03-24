@@ -81,14 +81,12 @@ class ARTEventDetailScreen extends HookConsumerWidget {
                     label: const Text("Initiate delivery"),
                     icon: const Icon(Icons.delivery_dining),
                     onPressed: () {
+
                       context.goNamed(
                         RouteNames.HIV_ART_DELIVERY_INITIATION_FORM,
-                        extra: {
-                          "payload": data
-                              .where((element) => element.id == eventId)
-                              .elementAt(0),
-                          "type": "self"
-                        },
+                        extra: data
+                            .where((element) => element.id == eventId)
+                            .elementAt(0),
                       );
                     },
                   ),

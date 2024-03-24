@@ -10,11 +10,14 @@ _$ARTGroupSubscriptionImpl _$$ARTGroupSubscriptionImplFromJson(
         Map<String, dynamic> json) =>
     _$ARTGroupSubscriptionImpl(
       id: json['id'] as String?,
-      group: ARTGroup.fromJson(json['group'] as Map<String, dynamic>),
+      group: json['group'] == null
+          ? null
+          : ARTGroup.fromJson(json['group'] as Map<String, dynamic>),
       user: ARTGroupMember.fromJson(json['user'] as Map<String, dynamic>),
       publicName: json['publicName'] as String?,
       createdAt: json['createdAt'] as String,
       isCurrent: json['isCurrent'] as bool? ?? false,
+      hasConcented: json['hasConcented'] as bool? ?? false,
       isAdmin: json['isAdmin'] as bool? ?? false,
     );
 
@@ -27,5 +30,6 @@ Map<String, dynamic> _$$ARTGroupSubscriptionImplToJson(
       'publicName': instance.publicName,
       'createdAt': instance.createdAt,
       'isCurrent': instance.isCurrent,
+      'hasConcented': instance.hasConcented,
       'isAdmin': instance.isAdmin,
     };

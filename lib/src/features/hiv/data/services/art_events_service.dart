@@ -15,6 +15,7 @@ class ARTEventsService extends HTTPService {
     final response = await call(getUserRelatedEvents_, null);
     final responseString = await response.stream.bytesToString();
     final Map<String, dynamic> programData = json.decode(responseString);
+    debugPrint("*****************${programData["results"]}****************");
     final programs = (programData["results"] as List<dynamic>)
         .map((e) => ARTEvent.fromJson({
               ...e,
@@ -23,7 +24,6 @@ class ARTEventsService extends HTTPService {
                   e["remiderNortificationDates"].map((e) => e["time"]).toList()
             }))
         .toList();
-    debugPrint("*******************************$programs");
     return programs;
   }
 

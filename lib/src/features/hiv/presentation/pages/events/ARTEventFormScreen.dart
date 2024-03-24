@@ -133,8 +133,8 @@ class ARTEventFormScreen extends HookWidget {
                                 items: groups
                                     .map(
                                       (e) => DropdownMenuItem(
-                                        value: e.group.id,
-                                        child: Text(e.group.title),
+                                        value: e.group!.id,
+                                        child: Text(e.group!.title),
                                       ),
                                     )
                                     .toList(),

@@ -21,11 +21,12 @@ ARTGroupSubscription _$ARTGroupSubscriptionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ARTGroupSubscription {
   String? get id => throw _privateConstructorUsedError;
-  ARTGroup get group => throw _privateConstructorUsedError;
+  ARTGroup? get group => throw _privateConstructorUsedError;
   ARTGroupMember get user => throw _privateConstructorUsedError;
   String? get publicName => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
   bool? get isCurrent => throw _privateConstructorUsedError;
+  bool? get hasConcented => throw _privateConstructorUsedError;
   bool? get isAdmin => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,14 +43,15 @@ abstract class $ARTGroupSubscriptionCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      ARTGroup group,
+      ARTGroup? group,
       ARTGroupMember user,
       String? publicName,
       String createdAt,
       bool? isCurrent,
+      bool? hasConcented,
       bool? isAdmin});
 
-  $ARTGroupCopyWith<$Res> get group;
+  $ARTGroupCopyWith<$Res>? get group;
   $ARTGroupMemberCopyWith<$Res> get user;
 }
 
@@ -68,11 +70,12 @@ class _$ARTGroupSubscriptionCopyWithImpl<$Res,
   @override
   $Res call({
     Object? id = freezed,
-    Object? group = null,
+    Object? group = freezed,
     Object? user = null,
     Object? publicName = freezed,
     Object? createdAt = null,
     Object? isCurrent = freezed,
+    Object? hasConcented = freezed,
     Object? isAdmin = freezed,
   }) {
     return _then(_value.copyWith(
@@ -80,10 +83,10 @@ class _$ARTGroupSubscriptionCopyWithImpl<$Res,
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      group: null == group
+      group: freezed == group
           ? _value.group
           : group // ignore: cast_nullable_to_non_nullable
-              as ARTGroup,
+              as ARTGroup?,
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -100,6 +103,10 @@ class _$ARTGroupSubscriptionCopyWithImpl<$Res,
           ? _value.isCurrent
           : isCurrent // ignore: cast_nullable_to_non_nullable
               as bool?,
+      hasConcented: freezed == hasConcented
+          ? _value.hasConcented
+          : hasConcented // ignore: cast_nullable_to_non_nullable
+              as bool?,
       isAdmin: freezed == isAdmin
           ? _value.isAdmin
           : isAdmin // ignore: cast_nullable_to_non_nullable
@@ -109,8 +116,12 @@ class _$ARTGroupSubscriptionCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ARTGroupCopyWith<$Res> get group {
-    return $ARTGroupCopyWith<$Res>(_value.group, (value) {
+  $ARTGroupCopyWith<$Res>? get group {
+    if (_value.group == null) {
+      return null;
+    }
+
+    return $ARTGroupCopyWith<$Res>(_value.group!, (value) {
       return _then(_value.copyWith(group: value) as $Val);
     });
   }
@@ -134,15 +145,16 @@ abstract class _$$ARTGroupSubscriptionImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? id,
-      ARTGroup group,
+      ARTGroup? group,
       ARTGroupMember user,
       String? publicName,
       String createdAt,
       bool? isCurrent,
+      bool? hasConcented,
       bool? isAdmin});
 
   @override
-  $ARTGroupCopyWith<$Res> get group;
+  $ARTGroupCopyWith<$Res>? get group;
   @override
   $ARTGroupMemberCopyWith<$Res> get user;
 }
@@ -159,11 +171,12 @@ class __$$ARTGroupSubscriptionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? group = null,
+    Object? group = freezed,
     Object? user = null,
     Object? publicName = freezed,
     Object? createdAt = null,
     Object? isCurrent = freezed,
+    Object? hasConcented = freezed,
     Object? isAdmin = freezed,
   }) {
     return _then(_$ARTGroupSubscriptionImpl(
@@ -171,10 +184,10 @@ class __$$ARTGroupSubscriptionImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      group: null == group
+      group: freezed == group
           ? _value.group
           : group // ignore: cast_nullable_to_non_nullable
-              as ARTGroup,
+              as ARTGroup?,
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -191,6 +204,10 @@ class __$$ARTGroupSubscriptionImplCopyWithImpl<$Res>
           ? _value.isCurrent
           : isCurrent // ignore: cast_nullable_to_non_nullable
               as bool?,
+      hasConcented: freezed == hasConcented
+          ? _value.hasConcented
+          : hasConcented // ignore: cast_nullable_to_non_nullable
+              as bool?,
       isAdmin: freezed == isAdmin
           ? _value.isAdmin
           : isAdmin // ignore: cast_nullable_to_non_nullable
@@ -206,11 +223,12 @@ class _$ARTGroupSubscriptionImpl
     implements _ARTGroupSubscription {
   const _$ARTGroupSubscriptionImpl(
       {this.id,
-      required this.group,
+      this.group,
       required this.user,
       this.publicName,
       required this.createdAt,
       this.isCurrent = false,
+      this.hasConcented = false,
       this.isAdmin = false});
 
   factory _$ARTGroupSubscriptionImpl.fromJson(Map<String, dynamic> json) =>
@@ -219,7 +237,7 @@ class _$ARTGroupSubscriptionImpl
   @override
   final String? id;
   @override
-  final ARTGroup group;
+  final ARTGroup? group;
   @override
   final ARTGroupMember user;
   @override
@@ -231,11 +249,14 @@ class _$ARTGroupSubscriptionImpl
   final bool? isCurrent;
   @override
   @JsonKey()
+  final bool? hasConcented;
+  @override
+  @JsonKey()
   final bool? isAdmin;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ARTGroupSubscription(id: $id, group: $group, user: $user, publicName: $publicName, createdAt: $createdAt, isCurrent: $isCurrent, isAdmin: $isAdmin)';
+    return 'ARTGroupSubscription(id: $id, group: $group, user: $user, publicName: $publicName, createdAt: $createdAt, isCurrent: $isCurrent, hasConcented: $hasConcented, isAdmin: $isAdmin)';
   }
 
   @override
@@ -249,6 +270,7 @@ class _$ARTGroupSubscriptionImpl
       ..add(DiagnosticsProperty('publicName', publicName))
       ..add(DiagnosticsProperty('createdAt', createdAt))
       ..add(DiagnosticsProperty('isCurrent', isCurrent))
+      ..add(DiagnosticsProperty('hasConcented', hasConcented))
       ..add(DiagnosticsProperty('isAdmin', isAdmin));
   }
 
@@ -266,13 +288,15 @@ class _$ARTGroupSubscriptionImpl
                 other.createdAt == createdAt) &&
             (identical(other.isCurrent, isCurrent) ||
                 other.isCurrent == isCurrent) &&
+            (identical(other.hasConcented, hasConcented) ||
+                other.hasConcented == hasConcented) &&
             (identical(other.isAdmin, isAdmin) || other.isAdmin == isAdmin));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, group, user, publicName, createdAt, isCurrent, isAdmin);
+  int get hashCode => Object.hash(runtimeType, id, group, user, publicName,
+      createdAt, isCurrent, hasConcented, isAdmin);
 
   @JsonKey(ignore: true)
   @override
@@ -293,11 +317,12 @@ class _$ARTGroupSubscriptionImpl
 abstract class _ARTGroupSubscription implements ARTGroupSubscription {
   const factory _ARTGroupSubscription(
       {final String? id,
-      required final ARTGroup group,
+      final ARTGroup? group,
       required final ARTGroupMember user,
       final String? publicName,
       required final String createdAt,
       final bool? isCurrent,
+      final bool? hasConcented,
       final bool? isAdmin}) = _$ARTGroupSubscriptionImpl;
 
   factory _ARTGroupSubscription.fromJson(Map<String, dynamic> json) =
@@ -306,7 +331,7 @@ abstract class _ARTGroupSubscription implements ARTGroupSubscription {
   @override
   String? get id;
   @override
-  ARTGroup get group;
+  ARTGroup? get group;
   @override
   ARTGroupMember get user;
   @override
@@ -315,6 +340,8 @@ abstract class _ARTGroupSubscription implements ARTGroupSubscription {
   String get createdAt;
   @override
   bool? get isCurrent;
+  @override
+  bool? get hasConcented;
   @override
   bool? get isAdmin;
   @override

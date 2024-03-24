@@ -146,7 +146,6 @@ class DrugOrderWizardFormScreen extends HookConsumerWidget {
         currentStep.value = fieldStep;
       }
     }
-  debugPrint("${currentStep.value}");
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

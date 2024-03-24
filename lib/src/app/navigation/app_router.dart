@@ -416,8 +416,9 @@ final List<RouteBase> hivProgramRoutes = [
     name: RouteNames.HIV_ART_DELIVERY_INITIATION_FORM,
     path: "art-drug-initiation-form",
     builder: (BuildContext context, GoRouterState state) {
-      // final extra = state.extra as Map<String, dynamic>;
-      return const DrugDeliveryWizardForm();
+
+      final extra = state.extra as ARTEvent?;
+      return DrugDeliveryWizardForm(artEvent: extra);
     },
   ),
 ];

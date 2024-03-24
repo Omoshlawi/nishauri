@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:nishauri/src/features/hiv/data/models/group/art_group_extra_subscriber.dart';
+import 'package:nishauri/src/features/hiv/data/models/group/art_group_subscription.dart';
 part 'art_group.freezed.dart';
 part 'art_group.g.dart';
 
@@ -11,6 +12,7 @@ class ARTGroup with _$ARTGroup {
     required String title,
     String? description,
     @Default([]) List<ARTGroupExtraSubscriber> extraSubscribers,
+    @Default([]) List<ARTGroupSubscription> enrollments,
     required String createdAt,
     required String updatedAt,
   }) = _ARTGroup;

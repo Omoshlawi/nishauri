@@ -54,7 +54,7 @@ class ARTGroupsScreen extends StatelessWidget {
                             : null,
                       ),
                     ),
-                    title: Text(artGroupSubscriptions[index].group.title),
+                    title: Text(artGroupSubscriptions[index].group!.title),
                     subtitle: Text(
                         "From: ${DateFormat("dd MMM yyy").format(DateTime.parse(artGroupSubscriptions[index].createdAt))}"),
                     trailing: artGroupSubscriptions[index].isCurrent == true
